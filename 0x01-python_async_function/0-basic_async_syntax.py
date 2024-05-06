@@ -12,6 +12,7 @@ async def wait_random(max_delay=10):
     Attr:
         max_delay: upper bound for random integer
     """
-    randon_delay = await asyncio.sleep(random.uniform(0, max_delay))
+    random_delay = random.uniform(0, max_delay)
+    await asyncio.sleep(random_delay)
 
     return random_delay
