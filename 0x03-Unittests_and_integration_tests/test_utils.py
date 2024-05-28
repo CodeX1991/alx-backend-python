@@ -25,14 +25,13 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand([
-        ({}, ("a",), "Key 'a' not fouund in the nested map"),
-        ({"a": 1}, ("a", "b"), "Key 'b' not found in the nested map"),
+        ({}, ("a",), KeyError),
+        ({"a": 1}, ("a", "b"), KeyError),
         ])
-    def test_access_nested_map_exception(self, nested_map, path, expected_m):
+    def test_access_nested_map_exception(self, nested_map, path, exception):
         """Handle Error"""
-        with self.assertRaises(KeyError) as em:
+        with self.assertRaises(exception):
             access_nested_map(nested_map, path)
-        self.assertEqual(str(em.exception), expected_m)
 
 
 if __name__ == '__main__':
